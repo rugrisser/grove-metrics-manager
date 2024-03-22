@@ -1,4 +1,4 @@
-package org.grove.metricsmanager.configuration.properties
+package org.grove.metricsmanager.common.configuration.properties
 
 import com.zaxxer.hikari.HikariConfig
 import org.springframework.boot.context.properties.ConfigurationProperties

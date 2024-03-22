@@ -21,6 +21,7 @@
         <liquibase.version>4.26.0</liquibase.version>
         <postgres.driver.version>42.7.3</postgres.driver.version>
         <hikari.version>5.1.0</hikari.version>
+        <hibernate.version>6.4.4.Final</hibernate.version>
     </properties>
     <dependencies>
         <dependency>
@@ -61,6 +62,15 @@
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>${hikari.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
         </dependency>
 
         <!-- Test -->

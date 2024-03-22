@@ -1,4 +1,4 @@
-package org.grove.metricsmanager.configuration
+package org.grove.metricsmanager.common.configuration
 
 import liquibase.integration.spring.SpringLiquibase
 import org.springframework.context.annotation.Bean

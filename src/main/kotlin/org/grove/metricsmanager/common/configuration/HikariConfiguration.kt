@@ -1,7 +1,7 @@
-package org.grove.metricsmanager.configuration
+package org.grove.metricsmanager.common.configuration
 
 import com.zaxxer.hikari.HikariDataSource
-import org.grove.metricsmanager.configuration.properties.HikariProperties
+import org.grove.metricsmanager.common.configuration.properties.HikariProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
