@@ -1,9 +1,6 @@
 package org.grove.metricsmanager.common.entity
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import java.util.UUID
 
 @Entity
@@ -11,11 +8,11 @@ import java.util.UUID
 data class Source(
     @Id
     @Column(name = "s_id")
-    val id: UUID = UUID.randomUUID(),
+    var id: UUID = UUID.randomUUID(),
 
     @Column(name = "s_name")
-    val name: String = "",
+    var name: String = "",
 
     @Column(name = "s_link")
-    val link: String = ""
+    var link: String = ""
 )

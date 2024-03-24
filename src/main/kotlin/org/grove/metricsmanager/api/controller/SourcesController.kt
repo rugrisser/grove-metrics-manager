@@ -46,6 +46,7 @@ class SourcesController(
     fun updateSource(
         @RequestBody body: UpdateSourceRequestDto
     ): ResponseEntity<Unit> {
+        sourcesService.updateSource(body)
         return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 
@@ -53,6 +54,7 @@ class SourcesController(
     fun deleteSource(
         @PathVariable("id") id: UUID
     ): ResponseEntity<Unit> {
+        sourcesService.deleteSource(id)
         return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 }

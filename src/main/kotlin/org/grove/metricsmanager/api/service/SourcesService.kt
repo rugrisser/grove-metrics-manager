@@ -31,12 +31,10 @@ class SourcesService(
     fun createSource(requestDto: CreateSourceRequestDto): UUID {
         val source = requestDto.toModel()
 
-        runCatching {
+        return runCatching {
             sourcesDao.createOrUpdateSource(source)
             source.id
-        }.onFailure { throw DatabaseException("Details not provided", it) }
-
-        return source.id
+        }.getOrElse { throw DatabaseException("Details not provided", it) }
     }
 
     fun updateSource(requestDto: UpdateSourceRequestDto) {

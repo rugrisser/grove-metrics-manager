@@ -21,6 +21,7 @@ class HibernateConfiguration(
         LocalSessionFactoryBean().apply {
             setDataSource(dataSource)
             hibernateProperties = HIBERNATE_PROPERTIES
+            setPackagesToScan("org.grove.metricsmanager")
         }
 
     @Bean

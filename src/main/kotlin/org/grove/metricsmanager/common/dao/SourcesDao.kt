@@ -15,8 +15,8 @@ class SourcesDao(
         return sessionFactory.fromSession {
             val criteriaBuilder = it.criteriaBuilder
             val query = criteriaBuilder.createQuery(Source::class.java)
-            val rootEntry = query.from(Source::class.java)
-            val allSources = query.select(rootEntry)
+            val root = query.from(Source::class.java)
+            val allSources = query.select(root)
 
             it.createQuery(allSources).resultList
         }
@@ -29,15 +29,15 @@ class SourcesDao(
     }
 
     fun createOrUpdateSource(source: Source) {
-        sessionFactory.inSession {
-            it.persist(source)
+        sessionFactory.inTransaction {
+            it.merge(source)
         }
     }
 
     fun deleteSource(sourceId: UUID) {
         val source = getSourceById(sourceId) ?: throw SourceNotFoundException()
 
-        sessionFactory.inSession {
+        sessionFactory.inTransaction {
             it.remove(source)
         }
     }

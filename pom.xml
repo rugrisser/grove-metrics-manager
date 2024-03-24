@@ -99,7 +99,11 @@
                     </args>
                     <compilerPlugins>
                         <plugin>spring</plugin>
+                        <plugin>all-open</plugin>
                     </compilerPlugins>
+                    <pluginOptions>
+                        <option>all-open:annotation=jakarta.persistence.Entity</option>
+                    </pluginOptions>
                 </configuration>
                 <dependencies>
                     <dependency>
