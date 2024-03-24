@@ -1,7 +1,7 @@
 create table sources(
     s_id uuid,
     s_name varchar(255),
-    s_link varchar(512),
+    s_link varchar(512) unique,
 
     constraint sources_pk primary key (s_id)
 );
