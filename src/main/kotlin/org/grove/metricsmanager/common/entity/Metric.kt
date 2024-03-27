@@ -14,16 +14,20 @@ import java.util.UUID
 data class Metric(
     @Id
     @Column(name = "m_id")
-    val id: UUID = UUID.randomUUID(),
+    var id: UUID = UUID.randomUUID(),
 
     @Column(name = "m_key")
-    val key: String = "",
+    var key: String = "",
 
     @Column(name = "m_update_frequency")
-    val updateFrequency: Duration = Duration.ofMinutes(1),
+    var updateFrequency: Duration = Duration.ofMinutes(1),
 
     @ManyToOne
     @JoinColumn(name = "s_id")
-    val source: Source = Source()
+    var source: Source = Source(),
+
+    @ManyToOne
+    @JoinColumn(name = "c_id")
+    var consumer: Consumer = Consumer()
 )
 
