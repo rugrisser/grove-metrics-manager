@@ -3,7 +3,7 @@ package org.grove.metricsmanager.api.controller
 import org.grove.metricsmanager.api.dto.request.CreateSourceRequestDto
 import org.grove.metricsmanager.api.dto.request.UpdateSourceRequestDto
 import org.grove.metricsmanager.api.dto.response.CreateSourceResponseDto
-import org.grove.metricsmanager.api.service.SourcesService
+import org.grove.metricsmanager.common.service.SourcesService
 import org.grove.metricsmanager.common.entity.Source
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

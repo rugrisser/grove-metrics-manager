@@ -1,4 +1,4 @@
-package org.grove.metricsmanager.api.service
+package org.grove.metricsmanager.common.service
 
 import org.grove.metricsmanager.api.dto.request.CreateConsumerRequestDto
 import org.grove.metricsmanager.api.dto.request.UpdateConsumerRequestDto

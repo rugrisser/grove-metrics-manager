@@ -1,4 +1,4 @@
-package org.grove.metricsmanager.api.service
+package org.grove.metricsmanager.common.service
 
 import org.grove.metricsmanager.common.dao.MetricsDao
 import org.grove.metricsmanager.common.entity.Metric

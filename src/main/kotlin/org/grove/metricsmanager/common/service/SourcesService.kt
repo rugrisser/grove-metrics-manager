@@ -1,4 +1,4 @@
-package org.grove.metricsmanager.api.service
+package org.grove.metricsmanager.common.service
 
 import org.grove.metricsmanager.api.dto.request.CreateSourceRequestDto
 import org.grove.metricsmanager.api.dto.request.UpdateSourceRequestDto

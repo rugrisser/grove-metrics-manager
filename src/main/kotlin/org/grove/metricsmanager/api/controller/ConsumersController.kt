@@ -3,7 +3,7 @@ package org.grove.metricsmanager.api.controller
 import org.grove.metricsmanager.api.dto.request.CreateConsumerRequestDto
 import org.grove.metricsmanager.api.dto.request.UpdateConsumerRequestDto
 import org.grove.metricsmanager.api.dto.response.CreateConsumerResponseDto
-import org.grove.metricsmanager.api.service.ConsumersService
+import org.grove.metricsmanager.common.service.ConsumersService
 import org.grove.metricsmanager.common.entity.Consumer
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

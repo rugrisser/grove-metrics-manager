@@ -1,6 +1,6 @@
 package org.grove.metricsmanager.api.controller
 
-import org.grove.metricsmanager.api.service.MetricsService
+import org.grove.metricsmanager.common.service.MetricsService
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
