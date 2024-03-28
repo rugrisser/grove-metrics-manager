@@ -22,6 +22,7 @@
         <postgres.driver.version>42.7.3</postgres.driver.version>
         <hikari.version>5.1.0</hikari.version>
         <hibernate.version>6.4.4.Final</hibernate.version>
+        <hypersistence-utils.version>3.7.3</hypersistence-utils.version>
     </properties>
     <dependencies>
         <dependency>
@@ -64,7 +65,7 @@
             <version>${hikari.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
@@ -72,6 +73,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.hypersistence</groupId>-->
+<!--            <artifactId>hypersistence-utils-hibernate-60</artifactId>-->
+<!--            <version>${hypersistence-utils.version}</version>-->
+<!--        </dependency>-->
 
         <!-- Test -->
 

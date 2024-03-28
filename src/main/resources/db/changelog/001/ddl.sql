@@ -11,12 +11,12 @@ create table sources(
 -- consumers
 
 create type consumer_type as enum
-    ('prometheus', 'prometheus_pushgateway', 'clickhouse');
+    ('PROMETHEUS', 'PROMETHEUS_PUSHGATEWAY', 'CLICKHOUSE');
 
 create table consumers(
     c_id uuid not null,
     c_name varchar(255) not null,
-    c_type consumer_type not null default 'prometheus',
+    c_type consumer_type not null default 'PROMETHEUS',
 
     constraint consumers_pk primary key (c_id)
 );

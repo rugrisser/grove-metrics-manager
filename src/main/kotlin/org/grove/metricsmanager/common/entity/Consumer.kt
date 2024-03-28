@@ -1,10 +1,9 @@
 package org.grove.metricsmanager.common.entity
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import jakarta.persistence.OneToMany
-import jakarta.persistence.Table
+import com.fasterxml.jackson.annotation.JsonIgnore
+import jakarta.persistence.*
+import org.hibernate.annotations.JdbcType
+import org.hibernate.dialect.PostgreSQLEnumJdbcType
 import java.util.UUID
 
 @Entity
@@ -18,23 +17,27 @@ data class Consumer(
     var name: String = "",
 
     @Column(name = "c_type")
-    var type: Type = Type.PROMETHEUS,
+    @Enumerated(EnumType.STRING)
+    @JdbcType(PostgreSQLEnumJdbcType::class)
+    var type: ConsumerType = ConsumerType.PROMETHEUS,
 
-    @OneToMany(targetEntity = Property::class)
-    var properties: Set<Property> = setOf()
+    @OneToMany(
+        targetEntity = Property::class,
+        mappedBy = "consumerId",
+        cascade = [CascadeType.ALL],
+        fetch = FetchType.EAGER
+    )
+    var properties: MutableSet<Property> = mutableSetOf()
 ) {
-
-    enum class Type(private val dbName: String) {
-        PROMETHEUS("prometheus"),
-        CLICKHOUSE("clickhouse"),
-        PROMETHEUS_PUSHGATEWAY("prometheus_pushgateway");
-
-        override fun toString() = dbName
-    }
 
     @Entity
     @Table(name = "consumer_properties")
     data class Property(
+        @Id
+        @Column(name = "c_id")
+        @JsonIgnore
+        var consumerId: UUID = UUID.randomUUID(),
+
         @Id
         @Column(name = "cp_id")
         var id: UUID = UUID.randomUUID(),

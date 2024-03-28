@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
 
 @RestController
-@RequestMapping("/api/metrics/")
+@RequestMapping("/api/metrics")
 class MetricsController(
     private val metricsService: MetricsService
 ) {
