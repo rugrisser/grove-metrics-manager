@@ -33,7 +33,9 @@ class MetricsDao(
                 .select(root)
                 .where(
                     criteriaBuilder.equal(
-                        root.get<Source>("source").get<UUID>("id"),
+                        root
+                            .get<Source>("source")
+                            .get<UUID>("id"),
                         sourceId
                     )
                 )

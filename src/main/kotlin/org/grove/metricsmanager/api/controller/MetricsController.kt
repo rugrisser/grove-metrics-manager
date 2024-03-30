@@ -48,16 +48,6 @@ class MetricsController(
         return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 
-    @PatchMapping("/changeSource")
-    fun changeSource() {
-
-    }
-
-    @PatchMapping("/changeConsumer")
-    fun changeConsumer() {
-
-    }
-
     @DeleteMapping("/{id}")
     fun deleteMetric(
         @PathVariable("id") metricId: UUID
