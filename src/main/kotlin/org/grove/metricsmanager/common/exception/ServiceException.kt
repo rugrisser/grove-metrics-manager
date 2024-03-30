@@ -1,8 +1,8 @@
-package org.grove.metricsmanager.api.exception
+package org.grove.metricsmanager.common.exception
 
 import org.springframework.http.HttpStatus
 
-open class ControllerException(
+open class ServiceException(
     val httpStatus: HttpStatus,
     override val message: String,
     cause: Throwable?

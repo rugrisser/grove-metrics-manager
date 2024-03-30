@@ -1,10 +1,10 @@
-package org.grove.metricsmanager.api.exception
+package org.grove.metricsmanager.common.exception
 
 import org.springframework.http.HttpStatus
 
 class SourceNotFoundException(
     cause: Throwable? = null
-): ControllerException(
+): ServiceException(
     HttpStatus.NOT_FOUND,
     "Source not found",
     cause

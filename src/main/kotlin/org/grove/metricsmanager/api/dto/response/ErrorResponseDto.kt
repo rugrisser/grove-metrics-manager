@@ -1,6 +1,6 @@
 package org.grove.metricsmanager.api.dto.response
 
-import org.grove.metricsmanager.api.exception.ControllerException
+import org.grove.metricsmanager.common.exception.ServiceException
 
 data class ErrorResponseDto(
     val message: String
@@ -8,5 +8,5 @@ data class ErrorResponseDto(
     companion object
 }
 
-fun ErrorResponseDto.Companion.fromException(exception: ControllerException) =
+fun ErrorResponseDto.Companion.fromException(exception: ServiceException) =
     ErrorResponseDto(exception.message)

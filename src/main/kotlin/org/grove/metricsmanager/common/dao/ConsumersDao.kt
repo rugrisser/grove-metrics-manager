@@ -1,6 +1,6 @@
 package org.grove.metricsmanager.common.dao
 
-import org.grove.metricsmanager.api.exception.ConsumerNotFoundException
+import org.grove.metricsmanager.common.exception.ConsumerNotFoundException
 import org.grove.metricsmanager.common.entity.Consumer
 import org.hibernate.SessionFactory
 import org.springframework.stereotype.Repository

@@ -2,10 +2,10 @@ package org.grove.metricsmanager.common.service
 
 import org.grove.metricsmanager.api.dto.request.CreateSourceRequestDto
 import org.grove.metricsmanager.api.dto.request.UpdateSourceRequestDto
-import org.grove.metricsmanager.api.exception.DatabaseException
-import org.grove.metricsmanager.api.exception.SourceNotFoundException
+import org.grove.metricsmanager.common.exception.SourceNotFoundException
 import org.grove.metricsmanager.common.dao.SourcesDao
 import org.grove.metricsmanager.common.entity.Source
+import org.grove.metricsmanager.common.util.processDatabaseException
 import org.springframework.stereotype.Service
 import java.util.UUID
 
@@ -17,15 +17,13 @@ class SourcesService(
     fun getAllSources(): List<Source> {
         return runCatching {
             sourcesDao.getAllSources()
-        }.getOrElse { throw DatabaseException("Details not provided", it) }
+        }.getOrElse(::processDatabaseException)
     }
 
     fun getSourceById(id: UUID): Source {
         return runCatching {
             sourcesDao.getSourceById(id)
-        }.getOrElse {
-            throw DatabaseException("Details not provided", it)
-        } ?: throw SourceNotFoundException()
+        }.getOrElse(::processDatabaseException) ?: throw SourceNotFoundException()
     }
 
     fun createSource(requestDto: CreateSourceRequestDto): UUID {
@@ -34,7 +32,7 @@ class SourcesService(
         return runCatching {
             sourcesDao.createOrUpdateSource(source)
             source.id
-        }.getOrElse { throw DatabaseException("Details not provided", it) }
+        }.getOrElse(::processDatabaseException)
     }
 
     fun updateSource(requestDto: UpdateSourceRequestDto) {
@@ -45,16 +43,12 @@ class SourcesService(
 
         runCatching {
             sourcesDao.createOrUpdateSource(source)
-        }.onFailure { throw DatabaseException("Details not provided", it) }
+        }.onFailure(::processDatabaseException)
     }
 
     fun deleteSource(id: UUID) {
-        if (sourcesDao.getSourceById(id) == null) {
-            throw SourceNotFoundException()
-        }
-
         runCatching {
             sourcesDao.deleteSource(id)
-        }.onFailure { throw DatabaseException("Details not provided", it) }
+        }.onFailure(::processDatabaseException)
     }
 }

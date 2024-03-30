@@ -1,15 +1,13 @@
 package org.grove.metricsmanager.api.controller
 
+import org.grove.metricsmanager.api.dto.request.CreateMetricRequestDto
+import org.grove.metricsmanager.api.dto.request.UpdateMetricRequestDto
+import org.grove.metricsmanager.api.dto.response.CreateMetricResponseDto
+import org.grove.metricsmanager.common.entity.Metric
 import org.grove.metricsmanager.common.service.MetricsService
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PatchMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
 import java.util.UUID
 
 @RestController
@@ -20,20 +18,34 @@ class MetricsController(
 
     @GetMapping
     fun findMetric(
-        @RequestParam(value = "id", required = false) metricId: UUID,
-        @RequestParam(value = "sourceId", required = false) sourceId: UUID
-    ) {
+        @RequestParam(value = "sourceId", required = false) sourceId: UUID?
+    ): List<Metric> {
+        return when {
+            sourceId != null -> metricsService.getMetricsBySourceId(sourceId)
+            else -> metricsService.getAllMetrics()
+        }
+    }
 
+    @GetMapping("/{id}")
+    fun findMetricById(
+        @PathVariable("id") metricId: UUID
+    ): Metric {
+        return metricsService.getMetricById(metricId)
     }
 
     @PostMapping
-    fun createMetric() {
-
+    fun createMetric(
+        @RequestBody body: CreateMetricRequestDto
+    ): CreateMetricResponseDto {
+        return CreateMetricResponseDto(metricsService.createMetric(body))
     }
 
     @PutMapping
-    fun updateMetric() {
-
+    fun updateMetric(
+        @RequestBody body: UpdateMetricRequestDto
+    ): ResponseEntity<Unit> {
+        metricsService.updateMetric(body)
+        return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 
     @PatchMapping("/changeSource")
@@ -49,7 +61,8 @@ class MetricsController(
     @DeleteMapping("/{id}")
     fun deleteMetric(
         @PathVariable("id") metricId: UUID
-    ) {
-
+    ): ResponseEntity<Unit> {
+        metricsService.deleteMetricById(metricId)
+        return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 }

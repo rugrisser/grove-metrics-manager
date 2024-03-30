@@ -2,10 +2,10 @@ package org.grove.metricsmanager.common.service
 
 import org.grove.metricsmanager.api.dto.request.CreateConsumerRequestDto
 import org.grove.metricsmanager.api.dto.request.UpdateConsumerRequestDto
-import org.grove.metricsmanager.api.exception.ConsumerNotFoundException
-import org.grove.metricsmanager.api.exception.DatabaseException
+import org.grove.metricsmanager.common.exception.ConsumerNotFoundException
 import org.grove.metricsmanager.common.dao.ConsumersDao
 import org.grove.metricsmanager.common.entity.Consumer
+import org.grove.metricsmanager.common.util.processDatabaseException
 import org.springframework.stereotype.Service
 import java.util.UUID
 
@@ -17,15 +17,13 @@ class ConsumersService(
     fun getAllConsumers(): List<Consumer> {
         return runCatching {
             consumersDao.getAllConsumers()
-        }.getOrElse { throw DatabaseException("Details not provided", it) }
+        }.getOrElse(::processDatabaseException)
     }
 
     fun getConsumerById(id: UUID): Consumer {
         return runCatching {
             consumersDao.getConsumerById(id)
-        }.getOrElse {
-            throw DatabaseException("Details not provided", it)
-        } ?: throw ConsumerNotFoundException()
+        }.getOrElse(::processDatabaseException) ?: throw ConsumerNotFoundException()
     }
 
     fun createConsumer(requestDto: CreateConsumerRequestDto): UUID {
@@ -34,7 +32,7 @@ class ConsumersService(
         return runCatching {
             consumersDao.createCustomer(consumer)
             consumer.id
-        }.getOrElse { throw DatabaseException("Details not provided", it) }
+        }.getOrElse(::processDatabaseException)
     }
 
     fun updateConsumer(requestDto: UpdateConsumerRequestDto) {
@@ -45,16 +43,12 @@ class ConsumersService(
 
         runCatching {
             consumersDao.updateCustomer(consumer)
-        }.onFailure { throw DatabaseException("Details not provided", it) }
+        }.onFailure(::processDatabaseException)
     }
 
     fun deleteConsumer(id: UUID) {
-        if (consumersDao.getConsumerById(id) == null) {
-            throw ConsumerNotFoundException()
-        }
-
         runCatching {
             consumersDao.deleteConsumer(id)
-        }.onFailure { throw DatabaseException("Details not provided", it) }
+        }.onFailure(::processDatabaseException)
     }
 }

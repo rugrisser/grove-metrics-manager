@@ -1,11 +1,8 @@
 package org.grove.metricsmanager.common.entity
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.Table
+import jakarta.persistence.*
+import org.hibernate.annotations.JdbcType
+import org.hibernate.dialect.PostgreSQLIntervalSecondJdbcType
 import java.time.Duration
 import java.util.UUID
 
@@ -19,15 +16,19 @@ data class Metric(
     @Column(name = "m_key")
     var key: String = "",
 
-    @Column(name = "m_update_frequency")
+    @Column(
+        name = "m_update_frequency",
+        columnDefinition = "interval"
+    )
+    @JdbcType(PostgreSQLIntervalSecondJdbcType::class)
     var updateFrequency: Duration = Duration.ofMinutes(1),
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "s_id")
-    var source: Source = Source(),
+    var source: Source? = null,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "c_id")
-    var consumer: Consumer = Consumer()
+    var consumer: Consumer? = null
 )
 
