@@ -1,3 +1,5 @@
 databaseChangeLog:
   - include:
       file: db/changelog/001/001_init_db.yaml
+  - include:
+      file: db/changelog/002/002_schedule.yaml

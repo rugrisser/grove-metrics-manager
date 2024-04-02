@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002
+      author: grove-project
+      changes:
+        - sqlFile:
+            path: db/changelog/002/ddl.sql
+      rollback:
+        - sqlFile:
+            path: db/changelog/002/rollback.sql

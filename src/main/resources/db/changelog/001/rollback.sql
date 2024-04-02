@@ -1,3 +1,5 @@
+set search_path to public;
+
 drop table metrics;
 drop table sources;
 drop table consumer_properties;

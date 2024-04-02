@@ -1,3 +1,5 @@
+set search_path to public;
+
 -- sources
 
 create table sources(
@@ -40,7 +42,12 @@ create table metrics(
     s_id uuid,
     c_id uuid,
     m_key varchar(255) not null ,
-    m_update_frequency interval not null default interval '1 minute',
+    m_update_frequency interval
+        not null
+        default interval '1 minute'
+                    check ( m_update_frequency >= interval '1 minute' ),
+    m_updated_due timestamp default null,
+    m_ignore_until timestamp default null,
 
     constraint metrics_pk primary key (m_id),
     constraint sources_pk foreign key (s_id) references sources

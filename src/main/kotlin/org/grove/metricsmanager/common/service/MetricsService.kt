@@ -36,6 +36,12 @@ class MetricsService(
         }.getOrElse(::processDatabaseException) ?: throw MetricNotFoundException()
     }
 
+    fun getMetricsWithoutScheduledTasks(ignore: Collection<UUID>): List<Metric> {
+        return kotlin.runCatching {
+            metricsDao.getMetricsExceptGivenList(ignore)
+        }.getOrElse(::processDatabaseException)
+    }
+
     fun createMetric(dto: CreateMetricRequestDto): UUID {
         val pair = findSourceAndConsumer(dto.sourceId, dto.consumerId)
         val source = pair.first

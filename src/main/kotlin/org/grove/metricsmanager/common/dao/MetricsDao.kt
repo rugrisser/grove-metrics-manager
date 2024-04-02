@@ -1,6 +1,5 @@
 package org.grove.metricsmanager.common.dao
 
-import org.grove.metricsmanager.common.entity.Consumer
 import org.grove.metricsmanager.common.entity.Metric
 import org.grove.metricsmanager.common.entity.Source
 import org.grove.metricsmanager.common.exception.MetricNotFoundException
@@ -47,6 +46,25 @@ class MetricsDao(
     fun getMetricById(metricId: UUID): Metric? {
         return sessionFactory.fromSession {
             it.get(Metric::class.java, metricId)
+        }
+    }
+
+    fun getMetricsExceptGivenList(ignore: Collection<UUID>): List<Metric> {
+        return sessionFactory.fromSession {
+            val criteriaBuilder = it.criteriaBuilder
+            val query = criteriaBuilder.createQuery(Metric::class.java)
+            val root = query.from(Metric::class.java)
+            val metrics = query
+                .select(root)
+                .where(
+                    criteriaBuilder.not(
+                        root
+                            .get<UUID>("id")
+                            .`in`(ignore)
+                    )
+                )
+
+            it.createQuery(metrics).resultList
         }
     }
 

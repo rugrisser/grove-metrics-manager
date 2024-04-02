@@ -73,11 +73,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.hypersistence</groupId>-->
-<!--            <artifactId>hypersistence-utils-hibernate-60</artifactId>-->
-<!--            <version>${hypersistence-utils.version}</version>-->
-<!--        </dependency>-->
 
         <!-- Test -->
 
@@ -92,6 +87,16 @@
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <configuration>
+                    <searchPath>src/main/resources/db,src/main/resources</searchPath>
+                    <propertyFile>liquibase.properties</propertyFile>
+                    <changeLogFile>changelog/master.yaml</changeLogFile>
+                    <rollbackDate>2024-03-01</rollbackDate>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
