@@ -74,6 +74,16 @@
             <artifactId>spring-orm</artifactId>
         </dependency>
 
+        <!-- Kafka -->
+
+        <dependency>
+            <groupId>org.grove.protobuf</groupId>
+            <artifactId>metricsmanager</artifactId>
+            <version>0.0.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/protobuf/metricsmanager-0.0.1.jar</systemPath>
+        </dependency>
+
         <!-- Test -->
 
         <dependency>

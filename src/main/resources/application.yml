@@ -1,4 +1,6 @@
-spring.application.name: metrics-manager
+spring:
+  application.name: metrics-manager
+  task.scheduling.pool.size: 2
 
 server:
   port: ${PORT:8080}

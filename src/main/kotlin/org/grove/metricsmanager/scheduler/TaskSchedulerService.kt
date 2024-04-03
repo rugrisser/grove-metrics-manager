@@ -26,6 +26,8 @@ class TaskSchedulerService(
         mappedSchedule = scheduleDao
             .loadSchedule()
             .associateBy { it.metric.id }
+
+        logger.info("Restored ${mappedSchedule.size} schedule items")
     }
 
     @Scheduled(
@@ -42,6 +44,19 @@ class TaskSchedulerService(
             .associateBy { it.metric.id }
 
         logger.info("Schedule renewed")
+    }
+
+    @Scheduled(
+        fixedRate = 15,
+        initialDelay = 20,
+        timeUnit = TimeUnit.SECONDS
+    )
+    fun batchRunTasks() {
+        logger.info("Sending tasks batch")
+
+
+
+        logger.info("Batch sent successfully")
     }
 
     private companion object {
