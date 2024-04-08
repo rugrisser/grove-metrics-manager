@@ -15,7 +15,7 @@
     <description>metrics-manager</description>
     <properties>
         <java.version>21</java.version>
-        <kotlin.version>1.9.22</kotlin.version>
+        <kotlin.version>1.9.23</kotlin.version>
         <maven.compiler.target>21</maven.compiler.target>
         <maven.compiler.source>21</maven.compiler.source>
         <liquibase.version>4.26.0</liquibase.version>
@@ -23,6 +23,7 @@
         <hikari.version>5.1.0</hikari.version>
         <hibernate.version>6.4.4.Final</hibernate.version>
         <hypersistence-utils.version>3.7.3</hypersistence-utils.version>
+        <protobuf.version>3.25.3</protobuf.version>
     </properties>
     <dependencies>
         <dependency>
@@ -77,6 +78,20 @@
         <!-- Kafka -->
 
         <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-kotlin</artifactId>
+            <version>${protobuf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java-util</artifactId>
+            <version>${protobuf.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.grove.protobuf</groupId>
             <artifactId>metricsmanager</artifactId>
             <version>0.0.1</version>
@@ -117,6 +132,7 @@
                 <configuration>
                     <args>
                         <arg>-Xjsr305=strict</arg>
+                        <arg>-Xskip-prerelease-check</arg>
                     </args>
                     <compilerPlugins>
                         <plugin>spring</plugin>

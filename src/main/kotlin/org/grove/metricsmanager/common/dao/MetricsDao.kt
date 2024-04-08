@@ -1,5 +1,6 @@
 package org.grove.metricsmanager.common.dao
 
+import org.grove.metricsmanager.common.entity.Consumer
 import org.grove.metricsmanager.common.entity.Metric
 import org.grove.metricsmanager.common.entity.Source
 import org.grove.metricsmanager.common.exception.MetricNotFoundException
@@ -57,10 +58,14 @@ class MetricsDao(
             val metrics = query
                 .select(root)
                 .where(
-                    criteriaBuilder.not(
-                        root
-                            .get<UUID>("id")
-                            .`in`(ignore)
+                    criteriaBuilder.and(
+                        criteriaBuilder.not(
+                            root
+                                .get<UUID>("id")
+                                .`in`(ignore)
+                        ),
+                        criteriaBuilder.isNotNull(root.get<Source?>("source")),
+                        criteriaBuilder.isNotNull(root.get<Consumer?>("consumer"))
                     )
                 )
 

@@ -10,4 +10,6 @@ create table schedule(
 
     constraint schedule_pk primary key (m_id),
     constraint metrics_fk foreign key (m_id) references metrics
+                     on delete cascade
+                     on update cascade
 );
