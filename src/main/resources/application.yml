@@ -2,22 +2,24 @@ spring:
   application.name: metrics-manager
   task.scheduling.pool.size: 2
   kafka:
-    bootstrap-servers: ${KAFKA_HOSTS}
+    bootstrap-servers: ${KAFKA_HOST}
     producer:
       key-serializer: org.apache.kafka.common.serialization.UUIDSerializer
       value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
-      batch-size: ${KAFKA_PRODUCER_BATCH_SIZE:1024}
+      batch-size: ${KAFKA_PRODUCER_BATCH_SIZE:16384}
       properties:
-        linger.ms: 10
+        linger.ms: 50
+      acks: 1
+      retries: 3
 
 
 server:
   port: ${PORT:8080}
 
 kafka.producer:
-  name: ${KAFKA_PRODUCER_TOPIC_NAME:metrics_manager_messages}
-  partitions-count: ${KAFKA_PRODUCER_TOPIC_PARTITIONS_COUNT:1}
-  replication-factor: ${KAFKA_PRODUCER_TOPIC_REPLICATION_FACTOR:1}
+  name: ${KAFKA_OUTPUT_TOPIC:metrics_manager_messages}
+  partitions-count: ${KAFKA_OUTPUT_TOPIC_PARTITIONS_COUNT:1}
+  replication-factor: ${KAFKA_OUTPUT_TOPIC_REPLICATION_FACTOR:1}
 
 hikari:
   jdbc-url: jdbc:postgresql://${DB_HOST}/${DB_NAME}

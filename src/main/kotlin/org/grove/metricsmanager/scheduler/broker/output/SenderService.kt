@@ -5,5 +5,5 @@ import java.util.*
 
 interface SenderService {
 
-    fun sendBatch(messagesBatch: Map<UUID, ScheduleItem>)
+    fun sendBatch(messagesBatch: Map<UUID, ScheduleItem>): Set<UUID>
 }

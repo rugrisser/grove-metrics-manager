@@ -56,8 +56,9 @@ class TaskSchedulerService(
             .loadScheduleItemsToExecute()
             .associateBy { it.metric.id }
 
-        senderService.sendBatch(scheduleToExecute)
+        val failedIds = senderService.sendBatch(scheduleToExecute)
         scheduleToExecute
+            .filter { !failedIds.contains(it.key) }
             .forEach { it.value.status = ScheduleItem.Status.SENT }
         scheduleDao.updateSchedule(scheduleToExecute.values)
 
