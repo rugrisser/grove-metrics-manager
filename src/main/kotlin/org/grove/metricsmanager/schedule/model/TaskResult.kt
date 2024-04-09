@@ -1,4 +1,4 @@
-package org.grove.metricsmanager.scheduler.model
+package org.grove.metricsmanager.schedule.model
 
 import java.util.UUID
 

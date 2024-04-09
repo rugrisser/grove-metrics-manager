@@ -1,7 +1,7 @@
-package org.grove.metricsmanager.scheduler.configuration
+package org.grove.metricsmanager.schedule.configuration
 
 import org.apache.kafka.clients.admin.NewTopic
-import org.grove.metricsmanager.scheduler.configuration.properties.KafkaProperties
+import org.grove.metricsmanager.schedule.configuration.properties.KafkaProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

@@ -1,9 +1,9 @@
-package org.grove.metricsmanager.scheduler.dao
+package org.grove.metricsmanager.schedule.dao
 
 import org.grove.metricsmanager.common.entity.Consumer
 import org.grove.metricsmanager.common.entity.Metric
 import org.grove.metricsmanager.common.entity.Source
-import org.grove.metricsmanager.scheduler.entity.ScheduleItem
+import org.grove.metricsmanager.schedule.entity.ScheduleItem
 import org.hibernate.SessionFactory
 import org.springframework.stereotype.Repository
 import java.time.LocalDateTime

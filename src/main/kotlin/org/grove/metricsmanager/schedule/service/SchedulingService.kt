@@ -1,9 +1,9 @@
-package org.grove.metricsmanager.scheduler.service
+package org.grove.metricsmanager.schedule.service
 
 import org.grove.metricsmanager.common.service.MetricsService
-import org.grove.metricsmanager.scheduler.broker.output.SenderService
-import org.grove.metricsmanager.scheduler.dao.ScheduleDao
-import org.grove.metricsmanager.scheduler.entity.ScheduleItem
+import org.grove.metricsmanager.schedule.broker.output.SenderService
+import org.grove.metricsmanager.schedule.dao.ScheduleDao
+import org.grove.metricsmanager.schedule.entity.ScheduleItem
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.EnableScheduling

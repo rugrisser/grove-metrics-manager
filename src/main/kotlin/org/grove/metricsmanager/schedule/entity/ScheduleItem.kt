@@ -1,4 +1,4 @@
-package org.grove.metricsmanager.scheduler.entity
+package org.grove.metricsmanager.schedule.entity
 
 import jakarta.persistence.*
 import org.grove.metricsmanager.common.entity.Metric

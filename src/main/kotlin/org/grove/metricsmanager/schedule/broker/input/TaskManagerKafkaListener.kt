@@ -1,10 +1,10 @@
-package org.grove.metricsmanager.scheduler.broker.input
+package org.grove.metricsmanager.schedule.broker.input
 
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.grove.metricsmanager.common.exception.MetricNotFoundException
-import org.grove.metricsmanager.scheduler.exception.ScheduleItemNotFoundException
-import org.grove.metricsmanager.scheduler.model.mapping.internalModel
-import org.grove.metricsmanager.scheduler.service.TaskResultService
+import org.grove.metricsmanager.schedule.exception.ScheduleItemNotFoundException
+import org.grove.metricsmanager.schedule.model.mapping.internalModel
+import org.grove.metricsmanager.schedule.service.TaskResultService
 import org.grove.protobuf.taskmanager.MetricTaskResult
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

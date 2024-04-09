@@ -1,9 +1,9 @@
-package org.grove.metricsmanager.scheduler.broker.output.impl
+package org.grove.metricsmanager.schedule.broker.output.impl
 
-import org.grove.metricsmanager.scheduler.broker.output.SenderService
-import org.grove.metricsmanager.scheduler.configuration.properties.KafkaProperties
-import org.grove.metricsmanager.scheduler.entity.ScheduleItem
-import org.grove.metricsmanager.scheduler.model.mapping.protobufModel
+import org.grove.metricsmanager.schedule.broker.output.SenderService
+import org.grove.metricsmanager.schedule.configuration.properties.KafkaProperties
+import org.grove.metricsmanager.schedule.entity.ScheduleItem
+import org.grove.metricsmanager.schedule.model.mapping.protobufModel
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.core.KafkaTemplate

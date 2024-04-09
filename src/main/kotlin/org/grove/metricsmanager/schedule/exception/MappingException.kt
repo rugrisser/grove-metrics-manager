@@ -1,4 +1,4 @@
-package org.grove.metricsmanager.scheduler.exception
+package org.grove.metricsmanager.schedule.exception
 
 class MappingException(
     message: String

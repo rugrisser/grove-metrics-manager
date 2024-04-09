@@ -1,7 +1,7 @@
-package org.grove.metricsmanager.scheduler.model.mapping
+package org.grove.metricsmanager.schedule.model.mapping
 
-import org.grove.metricsmanager.scheduler.exception.MappingException
-import org.grove.metricsmanager.scheduler.model.TaskResult
+import org.grove.metricsmanager.schedule.exception.MappingException
+import org.grove.metricsmanager.schedule.model.TaskResult
 import org.grove.protobuf.taskmanager.MetricTaskResult
 import org.grove.protobuf.taskmanager.MetricTaskResultStatus
 import java.util.*

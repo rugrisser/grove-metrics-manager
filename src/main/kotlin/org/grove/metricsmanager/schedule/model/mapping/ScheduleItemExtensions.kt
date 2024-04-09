@@ -1,10 +1,10 @@
-package org.grove.metricsmanager.scheduler.model.mapping
+package org.grove.metricsmanager.schedule.model.mapping
 
 import com.google.protobuf.timestamp
 import org.grove.metricsmanager.common.entity.Consumer
 import org.grove.metricsmanager.common.entity.ConsumerType
-import org.grove.metricsmanager.scheduler.entity.ScheduleItem
-import org.grove.metricsmanager.scheduler.exception.MappingException
+import org.grove.metricsmanager.schedule.entity.ScheduleItem
+import org.grove.metricsmanager.schedule.exception.MappingException
 import org.grove.protobuf.metricsmanager.*
 import org.grove.protobuf.metricsmanager.ConsumerType as ConsumerTypeProtobuf
 import java.time.ZoneOffset

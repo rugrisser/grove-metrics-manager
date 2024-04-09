@@ -1,4 +1,4 @@
-package org.grove.metricsmanager.scheduler.configuration.properties
+package org.grove.metricsmanager.schedule.configuration.properties
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 

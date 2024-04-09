@@ -1,10 +1,10 @@
-package org.grove.metricsmanager.scheduler.service
+package org.grove.metricsmanager.schedule.service
 
 import jakarta.persistence.NoResultException
 import org.grove.metricsmanager.common.service.MetricsService
-import org.grove.metricsmanager.scheduler.dao.ScheduleDao
-import org.grove.metricsmanager.scheduler.exception.ScheduleItemNotFoundException
-import org.grove.metricsmanager.scheduler.model.TaskResult
+import org.grove.metricsmanager.schedule.dao.ScheduleDao
+import org.grove.metricsmanager.schedule.exception.ScheduleItemNotFoundException
+import org.grove.metricsmanager.schedule.model.TaskResult
 import org.hibernate.NonUniqueResultException
 import org.springframework.stereotype.Service
 
