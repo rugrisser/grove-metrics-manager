@@ -8,15 +8,27 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @EnableConfigurationProperties(KafkaProperties::class)
-class KafkaTopicConfiguration {
+class KafkaTopicConfiguration(
+    private val properties: KafkaProperties
+) {
 
     @Bean
-    fun mainProducerTopic(properties: KafkaProperties): NewTopic {
-        val producerProperties = properties.producer
+    fun mainProducerTopic(): NewTopic {
+        val topicConfig = properties.producer
         return NewTopic(
-            producerProperties.name,
-            producerProperties.partitionsCount,
-            producerProperties.replicationFactor
+            topicConfig.name,
+            topicConfig.partitionsCount,
+            topicConfig.replicationFactor
+        )
+    }
+
+    @Bean
+    fun taskManagerConsumerTopic(): NewTopic {
+        val topicConfig = properties.taskManagerConsumer.topic
+        return NewTopic(
+            topicConfig.name,
+            topicConfig.partitionsCount,
+            topicConfig.replicationFactor
         )
     }
 }

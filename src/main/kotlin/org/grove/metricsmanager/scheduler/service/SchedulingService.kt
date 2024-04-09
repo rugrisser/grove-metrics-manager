@@ -1,4 +1,4 @@
-package org.grove.metricsmanager.scheduler
+package org.grove.metricsmanager.scheduler.service
 
 import org.grove.metricsmanager.common.service.MetricsService
 import org.grove.metricsmanager.scheduler.broker.output.SenderService
@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 
 @Service
 @EnableScheduling
-class TaskSchedulerService(
+class SchedulingService(
     private val scheduleDao: ScheduleDao,
     private val metricsService: MetricsService,
     private val senderService: SenderService
@@ -66,6 +66,6 @@ class TaskSchedulerService(
     }
 
     private companion object {
-        val logger: Logger = LoggerFactory.getLogger(TaskSchedulerService::class.java)
+        val logger: Logger = LoggerFactory.getLogger(SchedulingService::class.java)
     }
 }

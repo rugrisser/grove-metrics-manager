@@ -1,4 +1,4 @@
-package org.grove.metricsmanager.scheduler.model.protobuf
+package org.grove.metricsmanager.scheduler.model.mapping
 
 import com.google.protobuf.timestamp
 import org.grove.metricsmanager.common.entity.Consumer

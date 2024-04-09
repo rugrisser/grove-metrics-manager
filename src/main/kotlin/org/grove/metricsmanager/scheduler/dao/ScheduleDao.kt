@@ -7,6 +7,7 @@ import org.grove.metricsmanager.scheduler.entity.ScheduleItem
 import org.hibernate.SessionFactory
 import org.springframework.stereotype.Repository
 import java.time.LocalDateTime
+import java.util.UUID
 
 @Repository
 class ScheduleDao(
@@ -45,14 +46,33 @@ class ScheduleDao(
         }
     }
 
+    fun getScheduleItem(id: UUID): ScheduleItem {
+        return sessionFactory.fromSession {
+            val criteriaBuilder = it.criteriaBuilder
+            val query = criteriaBuilder.createQuery(ScheduleItem::class.java)
+            val root = query.from(ScheduleItem::class.java)
+            val withGivenId = query
+                .where(
+                    criteriaBuilder.equal(
+                        root
+                            .get<Metric>("metric")
+                            .get<UUID>("id"),
+                        id
+                    )
+                )
+
+            it.createQuery(withGivenId).singleResult
+        }
+    }
+
     fun loadSchedule(): List<ScheduleItem> {
         return sessionFactory.fromSession {
             val criteriaBuilder = it.criteriaBuilder
             val query = criteriaBuilder.createQuery(ScheduleItem::class.java)
             val root = query.from(ScheduleItem::class.java)
-            val allSources = query.select(root)
+            val allItems = query.select(root)
 
-            it.createQuery(allSources).resultList
+            it.createQuery(allItems).resultList
         }
     }
 
@@ -86,6 +106,25 @@ class ScheduleDao(
     fun updateSchedule(items: Collection<ScheduleItem>) {
         sessionFactory.inTransaction {
             items.forEach(it::merge)
+        }
+    }
+
+    fun deleteScheduleItem(id: UUID) {
+        sessionFactory.inTransaction {
+            val criteriaBuilder = it.criteriaBuilder
+            val query = criteriaBuilder.createCriteriaDelete(ScheduleItem::class.java)
+            val root = query.from(ScheduleItem::class.java)
+            val withGivenId = query
+                .where(
+                    criteriaBuilder.equal(
+                        root
+                            .get<Metric>("metric")
+                            .get<UUID>("id"),
+                        id
+                    )
+                )
+
+            it.createMutationQuery(withGivenId).executeUpdate()
         }
     }
 }

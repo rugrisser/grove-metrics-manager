@@ -98,6 +98,13 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/src/main/resources/lib/protobuf/metricsmanager-0.0.1.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>org.grove.protobuf</groupId>
+            <artifactId>taskmanager</artifactId>
+            <version>0.0.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/protobuf/taskmanager-0.0.1.jar</systemPath>
+        </dependency>
 
         <!-- Test -->
 

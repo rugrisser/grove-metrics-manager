@@ -9,6 +9,7 @@ import org.grove.metricsmanager.common.entity.Source
 import org.grove.metricsmanager.common.exception.MetricNotFoundException
 import org.grove.metricsmanager.common.util.processDatabaseException
 import org.springframework.stereotype.Service
+import java.time.LocalDateTime
 import java.util.UUID
 
 @Service
@@ -69,6 +70,15 @@ class MetricsService(
         runCatching {
             metricsDao.createOrUpdateMetric(metric)
         }.onFailure(::processDatabaseException)
+    }
+
+    fun actualizeUpdatedDueFieldByMetricId(
+        metricId: UUID,
+        updatedDue: LocalDateTime
+    ) {
+        val metric = getMetricById(metricId)
+        metric.updatedDue = updatedDue
+        metricsDao.createOrUpdateMetric(metric)
     }
 
     fun deleteMetricById(id: UUID) {
